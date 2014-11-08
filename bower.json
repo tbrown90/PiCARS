@@ -1,0 +1,9 @@
+{
+  "name": "PiCARS",
+  "description": "A MEAN home automation system with a Star Trek LCARS interface.",
+  "version": "0.0.1",
+  "dependencies": {
+      "angular": "*",
+      "angular-route": "*"
+  }
+}
