@@ -1,17 +1,36 @@
 'use strict';
-var gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
-    options = require('../options.js');
+var gulp = require('gulp');
+var options = require('../options.js');
+var gutil = require('gulp-util');
+var browserify = require('browserify');
+var manifest = require('./concat-filenames.js');
+var source = require('vinyl-source-stream');
+var streamify = require('gulp-streamify');
+var ngmin = require('gulp-ng-annotate');
+var tap = require('gulp-tap');
 
 function generateFeatureJs() {
     'use strict';
     
-    return gulp.src('public/js/features/**/*.js')
-        .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('default'))
-        .pipe(concat('features.js'))
-        .pipe(gulp.dest(options.appOutput))
-        .pipe(notify({message: 'script-features completed'}));
+    var manifestOptions = {
+        root: 'public/features',
+        prepend: 'require("./',
+        append: '");'
+    };
+    
+    var browserifyConfig = {
+        debug: !gutil.env.production
+    };
+    
+    return gulp.src('public/features/**/*.js')
+        .pipe(manifest('features.js', manifestOptions))
+        .pipe(tap(function doBrowserification(file, t) {
+            return browserify(file)
+                .bundle(browserifyConfig)
+                .pipe(source('features.js'))
+                .pipe(streamify(ngmin))
+                .pipe(gulp.dest(options.appOutput));
+        }));
 }
 
 gulp.task('script-features', generateFeatureJs);

@@ -1,35 +1,68 @@
 {
-  "name": "PiCARS",
-  "description": "A MEAN home automation system with a Star Trek LCARS interface.",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "~1.8.1",
-    "bower": "^1.3.12",
-    "cookie-parser": "~1.3.3",
-    "debug": "~2.0.0",
-    "ejs": "~0.8.5",
-    "express": "~4.9.0",
-    "mongoose": "^3.8.18",
-    "morgan": "~1.3.0",
-    "serve-favicon": "~2.1.3"
-  },
-  "devDependencies": {
-    "del": "^0.1.3",
-    "gulp": "^3.8.10",
-    "gulp-autoprefixer": "^1.0.1",
-    "gulp-cache": "^0.2.4",
-    "gulp-concat": "^2.4.1",
-    "gulp-imagemin": "^1.2.1",
-    "gulp-jshint": "^1.9.0",
-    "gulp-livereload": "^2.1.1",
-    "gulp-minify-css": "^0.3.11",
-    "gulp-notify": "^2.0.1",
-    "gulp-rename": "^1.2.0",
-    "gulp-ruby-sass": "^0.7.1",
-    "gulp-uglify": "^1.0.1"
-  }
+    "name": "PiCARS",
+    "description": "A MEAN home automation system with a Star Trek LCARS interface.",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "body-parser": "~1.8.1",
+        "bower": "^1.3.12",
+        "cookie-parser": "~1.3.3",
+        "debug": "~2.0.0",
+        "ejs": "~0.8.5",
+        "express": "~4.9.0",
+        "mongoose": "^3.8.18",
+        "morgan": "~1.3.0",
+        "serve-favicon": "~2.1.3",
+        "partialify": "3.1.1"
+    },
+    "devDependencies": {
+        "del": "^0.1.3",
+        "gulp": "^3.8.10",
+        "gulp-autoprefixer": "^1.0.1",
+        "gulp-cache": "^0.2.4",
+        "gulp-concat": "^2.4.1",
+        "gulp-imagemin": "^1.2.1",
+        "gulp-jshint": "^1.9.0",
+        "gulp-livereload": "^2.1.1",
+        "gulp-minify-css": "^0.3.11",
+        "gulp-notify": "^2.0.1",
+        "gulp-rename": "^1.2.0",
+        "gulp-ruby-sass": "^0.7.1",
+        "gulp-uglify": "^1.0.1",
+        "vinyl-source-stream": "~0.1.1",
+        "browserify": "3.46.0",
+        "gulp-browserify": "0.5.x",
+        "browserify-shim": "3.x.x",
+        "gulp-ng-annotate": "0.3.x", 
+        "gulp-util": "^2.2.14",
+        "through": "~2.3.4",
+        "gulp-concat": "2.1.x",
+        "gulp-streamify": "0.0.5",
+        "gulp-tap": "0.1.x",
+        "gulp-ng-html2js": "~0.1.6",
+        "gulp-htmlmin": "0.1.x",
+        "gulp-header": "*"
+    },
+    "browserify": {
+        "transform": [
+          "partialify",
+          "browserify-shim"
+        ]
+    },
+    "browserify-shim": {
+        "jquery": "$",
+        "jquery-ui": {},
+        "angular": {
+            "exports": "angular"
+        },
+        "angular-animate": {},
+        "angular-cookies": {},
+        "angular-placeholder-shim": {},
+        "angular-resource": {},
+        "angular-route": {},
+        "angular-sanitize": {}
+    }
 }
