@@ -1,5 +1,5 @@
-PiCARS.Controllers.controller('bodyCtrl', ['$scope', function($scope) {
+PiCARS.Controllers.controller('bodyCtrl', ['$scope', 'LogService', function($scope, LogService) {
     'use strict';
     $scope.test = 'Hello World';
-    console.log('bodyCtrl');
+    LogService.log('Body loaded');
 }]);
