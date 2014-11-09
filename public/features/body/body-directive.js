@@ -1,13 +1,12 @@
-PiCARS.Directives.directive('picars-body', [function bodyDirective() {
+PiCARS.Directives.directive('picarsBody', [function() {
+    'use strict';
     return {
         restrict: 'E',
         replace: true,
         scope: {
             id: '@'   
         },
-        templateUrl: 'body-partial.html',
-        controller: 'bodyCtrl', link: function($scope, $element) {
-        
-        }
+        templateUrl: 'features/body/body-partial.html',
+        controller: 'bodyCtrl'
     };
 }]);

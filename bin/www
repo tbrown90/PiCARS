@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 var debug = require('debug')('PiCARS');
-var PiCARS = require('../PiCARS');
+var PiCARS = require('../server/PiCARS');
 
 PiCARS.set('port', process.env.PORT || 3000);
 

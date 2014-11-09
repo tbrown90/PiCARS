@@ -1,6 +1,8 @@
-var appDependencies = ['PiCARSDirectives',
-                      'PiCARSControllers',
-                      'PiCARSServices'];
+var appDependencies = [
+    'ngRoute',
+    'PiCARSDirectives',
+    'PiCARSControllers',
+    'PiCARSServices'];
 
 var PiCARS = {
     App: angular.module('PiCARS', appDependencies),
@@ -8,5 +10,21 @@ var PiCARS = {
     Controllers: angular.module('PiCARSControllers', []),
     Services: angular.module('PiCARSServices', [])
 };
+
+
+PiCARS.App.config(function ($compileProvider){
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+});
+
+PiCARS.App.config(['$routeProvider',
+    function($routeProvider) {
+        $routeProvider.otherwise('/', {
+           controller: 'bodyCtrl' 
+        });
+    }]);
+
+PiCARS.App.run(function() {
+    
+});
 
 window.PiCARS = PiCARS;

@@ -1,0 +1,306 @@
+@font-face {
+	font-family: "Enterprise";
+	src: url("Enterprise.ttf")
+}
+
+html {
+    font-family: "Enterprise", georgia, serif;
+    font-size: 14px;
+    font-weight: 800;
+    height: 100%;
+}
+
+body {
+    background-color: black;
+    min-height: 100%;
+    min-width: 960px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    margin: 0;
+}
+
+.lcars-link span {
+	color: black;
+}
+
+.lcars-side {
+    position: relative;
+    width: 140px;
+}
+
+    .lcars-side li {
+        position: relative;
+        margin-bottom: 5px;
+        min-height: 30px;
+        text-align: right;
+        list-style: none;
+    }
+
+    .lcars-side li span {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    .lcars-side li a {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 30px;
+        width: 120px;
+    }
+
+.lcars-bottom-left {
+    border-bottom-left-radius: 90px;
+    -webkit-border-bottom-left-radius: 90px;
+    -moz-border-radius-bottomleft: 90px;
+    margin-top: -5px;
+}
+
+.lcars-top-left {
+    border-top-left-radius: 90px;
+    -webkit-border-top-left-radius: 90px;
+    -moz-border-radius-topleft: 90px;
+    margin-top: -5px;
+    height: 30px;
+}
+
+.lcars-inner-curve-parent-header {
+    position: absolute;
+    left: 120px;
+    top: 121px;
+    height: 30px;
+    width: 30px;
+}
+
+.lcars-inner-curve-parent-body {
+    position: absolute;
+    left: 120px;
+    height: 30px;
+    width: 30px;
+}
+
+.lcars-inner-curve-bottom-left {
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    height: 30px;
+}
+
+.lcars-inner-curve-top-left {
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+    height: 30px;
+}
+
+.lcars-horizontal-border{
+    height: 30px;
+    margin-left: 120px;
+    border-collapse: collapse;
+    width: 90%;
+}
+
+.lcars-horizontal-border td {
+    border-right: 5px solid black;
+}
+
+.lcars-header-content {
+    position: absolute;
+    margin-left: 145px;
+    width: 90.3%;
+    height: 115px;
+    z-index: 1;
+}
+
+.lcars-header-title {
+    position: relative;
+    left: 30%;
+    width: 50%;
+    height: 145px;
+    max-height: 145px;
+}
+
+.lcars-log {
+    position: relative;
+    top: -145px;
+    left: 5px;
+    height: 145px;
+    width: 28%;
+}
+
+.lcars-vert-divider {
+    position: relative;
+    display: inline;
+    height: 95%;
+    width: 10px;
+    top: 3%;
+}
+
+.lcars-body {
+    position: absolute;
+    top: 30px;
+    left: 125px;
+    color: white;
+    width: 89%;
+    height: 90%;
+    z-index: 2;
+}
+
+.lcars-upper {
+    position: absolute;
+    width: 100%;
+    min-width: 960px;
+}
+
+.lcars-lower {
+    position: absolute;
+    top: 230px;
+    width: 100%;
+    height: 100%;
+    min-width: 960px;
+}
+
+.lcars-center {
+	text-align: center;
+	align: center;
+}
+
+.lcars-table {
+	width: 100%;
+	margin: 10px auto;
+}
+
+.no-list-image {
+	list-style-type: none;
+}
+
+.action-button {
+	display: inline-block;
+	color: black;
+	background-color: white;
+	width: 175px;
+	border-radius: 5px;
+	margin: 2px;
+	text-align: center;
+	padding: 25px 0;
+	text-decoration: none;
+}
+
+.action-button-small {
+	display: inline-block;
+	color: black;
+	background-color: white;
+	width: 75px;
+	border-radius: 5px;
+	margin: 2px;
+	text-align: center;
+	padding: 10px 0;
+	text-decoration: none;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    float: right;
+}
+
+.c-white {
+    color: white;
+}
+
+.bc-black {
+    background-color: black;
+}
+
+.bc-ff9933 {
+    background-color: #ff9933;
+}
+
+.bc-9999ff {
+    background-color: #9999ff;
+}
+
+.bc-6688cc {
+    background-color: #6688cc;
+}
+
+.bc-bb6622 {
+    background-color: #bb6622;
+}
+
+.bc-bb4411 {
+    background-color: #bb4411;
+}
+
+.bc-006699 {
+    background-color: #006699;
+}
+
+.bc-ff9900 {
+    background-color: #ff9900;
+}
+
+.bc-cc99cc {
+    background-color: #cc99cc;
+}
+
+.bc-cc6666 {
+    background-color: #cc6666;
+}
+
+.bc-9999ff {
+    background-color: #9999ff;
+}
+
+.w-100-pc {
+    width: 100%;
+}
+
+.w-25-pc {
+    width: 25%;
+}
+
+.w-33-pc {
+    width: 33%;
+}
+
+.w-15-pc {
+    width: 15%;
+}
+
+.w-10-pc {
+    width: 10%;
+}
+
+.w-50-pc {
+    width: 50%;
+}
+
+.w-120-px {
+    width: 120px;
+}
+
+.h-60-px {
+    height: 60px;
+}
+
+.h-90-px {
+    height: 90px;
+}
+
+.h-100-pc {
+    height: 100%;
+}
+
+.m-t-n30-px {
+    margin-top: -30px;
+}

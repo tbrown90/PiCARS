@@ -44,7 +44,10 @@
         "gulp-tap": "0.1.x",
         "gulp-ng-html2js": "~0.1.6",
         "gulp-htmlmin": "0.1.x",
-        "gulp-header": "*"
+        "gulp-header": "*",
+        "gulp-rimraf":"0.1.x",
+        "run-sequence": "0.3.x",
+        "gulp-nodemon": "1.0.x"
     },
     "browserify": {
         "transform": [

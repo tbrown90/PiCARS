@@ -6,7 +6,7 @@ var htmlmin = require('gulp-htmlmin');
 function generateCoreHtml() {
     'use strict';
     var htmlMinOpts = {
-        collapseWhitespace: true   
+        collapseWhitespace: false   
     }
     
     gulp.src('public/index.html')

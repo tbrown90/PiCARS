@@ -19,7 +19,7 @@ PiCARS.use(logger('dev'));
 PiCARS.use(bodyParser.json());
 PiCARS.use(bodyParser.urlencoded({ extended: false }));
 PiCARS.use(cookieParser());
-PiCARS.use(express.static(path.join(__dirname, 'public')));
+PiCARS.use(express.static(path.join(__dirname, '../public/_PiCARS')));
 
 PiCARS.use('/', routes);
 

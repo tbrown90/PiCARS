@@ -1,4 +1,4 @@
-PiCARS.Controllers.controller('headerCtrl', ['$scope', function headerController($scope) {
+PiCARS.Controllers.controller('headerCtrl', ['$scope', function($scope) {
     'use strict';
     
 }]);

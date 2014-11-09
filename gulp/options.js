@@ -2,6 +2,6 @@
 var options = {
     appName: 'PiCARS',
     appOutput: './public/_PiCARS',
-    appServer: './PiCARS.js'
+    appServer: './bin/www'
 };
 module.exports = options;
