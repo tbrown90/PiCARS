@@ -18,8 +18,30 @@ PiCARS.App.config(function ($compileProvider){
 
 PiCARS.App.config(['$routeProvider',
     function($routeProvider) {
-        $routeProvider.otherwise('/', {
-           controller: 'bodyCtrl' 
+        $routeProvider
+        .when('/environment', {
+            templateUrl: 'features/environment/environment-partial.html',
+            controller: 'environmentCtrl'
+        })
+        .when('/security', {
+            templateUrl: 'features/security/security-partial.html',
+            controller: 'securityCtrl'
+        })
+        .when('/logistics', {
+            templateUrl: 'features/logistics/logistics-partial.html',
+            controller: 'logisticsCtrl'
+        })
+        .when('/recreation', {
+            templateUrl: 'features/recreation/recreation-partial.html',
+            controller: 'recreationCtrl'
+        })
+        .when('/biological', {
+            templateUrl: 'features/biological/biological-partial.html',
+            controller: 'biologicalCtrl'
+        })
+        .otherwise({
+            templateUrl: 'features/home/home-partial.html',
+            controller: 'homeCtrl' 
         });
     }]);
 
