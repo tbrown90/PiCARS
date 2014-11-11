@@ -4,11 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
 var resources = require('./resources');
 var config = require('./config/info');
 
 var PiCARS = express();
-resources.register(PiCARS, config);
+
+mongoose.connect(config.mongodb.url);
+var mongooseDb = mongoose.connection;
+mongooseDb.on('open', function(info) {
+    resources.register(PiCARS, config);
+});
 
 // view engine setup
 PiCARS.set('views', path.join(__dirname, 'views'));
