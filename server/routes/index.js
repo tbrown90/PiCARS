@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+var routes = [{
+    name: 'WeatherService',
+    url: '/weatherService',
+    method: 'get'
+}];
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index');
-});
-
-module.exports = router;
+module.exports = routes;

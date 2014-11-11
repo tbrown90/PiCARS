@@ -4,10 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
+var resources = require('./resources');
+var config = require('./config/info');
 
 var PiCARS = express();
+resources.register(PiCARS, config);
 
 // view engine setup
 PiCARS.set('views', path.join(__dirname, 'views'));
@@ -20,8 +21,6 @@ PiCARS.use(bodyParser.json());
 PiCARS.use(bodyParser.urlencoded({ extended: false }));
 PiCARS.use(cookieParser());
 PiCARS.use(express.static(path.join(__dirname, '../public/_PiCARS')));
-
-PiCARS.use('/', routes);
 
 // catch 404 and forward to error handler
 PiCARS.use(function(req, res, next) {

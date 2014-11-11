@@ -3,4 +3,4 @@ npm-debug.log
 /public/_PiCARS
 .DSSTORE
 /.sass-cache
-/server/config/info.json
+/server/config/info.js
