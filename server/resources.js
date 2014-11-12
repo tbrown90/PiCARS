@@ -9,6 +9,7 @@ var resources = {
             var resource = new Resource(config);
             PiCARS.use(route.url, function(req, res, next) {
                 if (route.method == 'get') {
+                    console.log('Route:', route.url);
                     resource.get(function(data) {
                         res.send(data);
                     });
