@@ -1,3 +1,4 @@
+require('./environment-routes.js');
 PiCARS.Controllers.controller('environmentCtrl', ['$scope', '$http', 'LogService', function($scope, $http, LogService) {
     'use strict';
     LogService.log('Environment loaded');
