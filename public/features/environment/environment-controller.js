@@ -11,7 +11,9 @@ PiCARS.Controllers.controller('environmentCtrl', ['$scope', '$http', 'LogService
         $http.get('/weatherService')
             .success(function(data, status, headers, config) {
                 LogService.log('Weather data retrieved');
-                $scope.weather = data;
+                $scope.weather = data['forecast']['simpleforecast']['forecastday'].slice(0, 5);
+
+                console.log('weather: ', $scope.weather);
             })
             .error(function(data, status, headers, config) {
                 LogService.log('Error: ', data);
