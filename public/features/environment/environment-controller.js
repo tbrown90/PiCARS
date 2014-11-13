@@ -12,7 +12,9 @@ PiCARS.Controllers.controller('environmentCtrl', ['$scope', '$http', 'LogService
         $http.get('/weatherService')
             .success(function(data, status, headers, config) {
                 LogService.log('Weather data retrieved');
-                $scope.weather = data['forecast']['simpleforecast']['forecastday'].slice(0, 5);
+                if (data) {
+                    $scope.weather = data['forecast']['simpleforecast']['forecastday'].slice(0, 5);
+                }
             })
             .error(function(data, status, headers, config) {
                 LogService.log('Error: ', data);

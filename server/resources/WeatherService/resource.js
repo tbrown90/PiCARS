@@ -13,12 +13,7 @@ function WeatherService(config) {
         console.log('reqString:', reqString);
         
         request(reqString, function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                callback(body);
-            }
-            else {
-                console.log('Error: ', error);   
-            }
+            callback(error, body);
         });
     }
     

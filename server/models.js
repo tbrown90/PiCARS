@@ -1,10 +1,10 @@
 var schemas = require('./schema');
-var mongoosee = require('mongoose');
+var mongoose = require('mongoose');
 
-function generateModels() {
+var generateModels = function generateModels() {
     'use strict';
     var models = {};
-    for (var i = 0; ii = schemas.length; i < ii; ++ i) {
+    for (var i = 0, ii = schemas.length; i < ii; ++ i) {
         var schema = schemas[i];
         var modelName = schema.name + 'Model'
 
@@ -14,4 +14,4 @@ function generateModels() {
     return models;
 }
 
-module.exports = generateModels();
+module.exports = generateModels;

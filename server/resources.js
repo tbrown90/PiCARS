@@ -10,8 +10,13 @@ var resources = {
             PiCARS.use(route.url, function(req, res, next) {
                 if (route.method == 'get') {
                     console.log('Route:', route.url);
-                    resource.get(function(data) {
-                        res.send(data);
+                    resource.get(function(err, data) {
+                        if (err) {
+                            console.log('Error:', err);
+                            res.send(null);
+                        } else {
+                            res.send(data);    
+                        }                                        
                     });
                 }
             });

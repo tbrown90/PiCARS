@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+var models = require('./models');
 var resources = require('./resources');
 var config = require('./config/info');
 
@@ -15,6 +16,7 @@ mongoose.connect(config.mongodb.url);
 var mongooseDb = mongoose.connection;
 mongooseDb.on('open', function(info) {
     resources.register(PiCARS, config);
+    models();
     
     // catch 404 and forward to error handler
     PiCARS.use(function(req, res, next) {
