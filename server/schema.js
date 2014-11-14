@@ -7,7 +7,6 @@
 var schemas = [{
     name: 'inventoryCategory',
     schema: {
-        'id': Number,
         'description': String,
         'createdTime': Date,
         'updatedTime': Date
@@ -15,7 +14,6 @@ var schemas = [{
 }, {
     name: 'inventoryLocation',
     schema: {
-        'id': Number,
         'description': String,
         'createdTime': Date,
         'updatedTime': Date
@@ -23,7 +21,6 @@ var schemas = [{
 }, {
     name: 'inventoryRecord',
     schema: {
-        'id': Number,
         'description': String,
         'price': Number,
         'quantity': Number,

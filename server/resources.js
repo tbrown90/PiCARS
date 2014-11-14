@@ -18,6 +18,16 @@ var resources = {
                             res.send(data);    
                         }                                        
                     });
+                } else if (route.method == 'post') {
+                    console.log('Route:', route.url);
+                    resource.post(req.body, function(err, data) {
+                        if (err) {
+                            console.log('Error:', err);
+                            res.send(null);
+                        } else {
+                            res.send(data);
+                        }
+                    });
                 }
             });
         }

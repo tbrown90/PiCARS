@@ -14,7 +14,18 @@ function LogisticsService(config) {
         });
     }
     
+    function addInventory(inventoryRecord, callback) {
+        console.log('Adding inventory record to database');
+        var connection = mongoose.connection;
+        var inventoryModel = connection.model('inventoryRecord');
+
+        inventoryModel.create(inventoryRecord, function(err, record) {
+            console.log('Inventory Record added successfully. Id: ', record.id);
+        });
+    }
+
     this.get = fetchInventory;
+    this.post = addInventory;
 }
 
 module.exports = LogisticsService;
