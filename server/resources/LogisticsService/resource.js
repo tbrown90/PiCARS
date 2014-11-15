@@ -1,7 +1,46 @@
 var mongoose = require('mongoose');
+var _ = require('lodash');
 
 function LogisticsService(config) {
     'use strict';
+    
+    function formatDate(date) {
+        if (!date) {
+            return '';    
+        }
+        
+        var d = new Date(date);
+        var day = d.getDate();
+        var month = d.getMonth();
+        var year = d.getFullYear();
+        
+        return year + '-' + (month + 1) + '-' + day;
+    }
+    
+    function getLocation(locationId) {
+        return locationId;
+    }
+    
+    function getCategory(categoryId) {
+        return categoryId;    
+    }
+    
+    function formatInventoryRecord(inventoryRecord) {
+        var record = {
+            description: inventoryRecord.description,
+            price: inventoryRecord.price,
+            quantity: inventoryRecord.quantity,
+            location: getLocation(inventoryRecord.location),
+            category: getCategory(inventoryRecord.category),
+            expirationDate: formatDate(inventoryRecord.expirationDate),
+            createdTime: formatDate(inventoryRecord.createdTime),
+            updatedTime: formatDate(inventoryRecord.updatedTime),
+            timesModified: inventoryRecord.timesModified
+        };
+        
+        return record;
+    }
+    
     function fetchInventory(req, resp) {
         console.log('Fetching Inventory');
         var connection = mongoose.connection;
@@ -18,7 +57,10 @@ function LogisticsService(config) {
                     error: err
                 });
             } else {
-                resp.send(response);
+                var inventory = _.chain(response)
+                    .map(formatInventoryRecord)
+                    .value();
+                resp.send(inventory);
             }
         });
     }
