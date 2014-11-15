@@ -133,14 +133,16 @@ h2 {
     left: 5px;
     height: 145px;
     width: 28%;
+    overflow-y: scroll;
 }
 
 .lcars-vert-divider {
-    position: relative;
+    position: absolute;
     display: inline;
-    height: 95%;
+    height: 135px;
     width: 10px;
     top: 3%;
+    left: 28%;
 }
 
 .lcars-body {

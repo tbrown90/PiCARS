@@ -16,7 +16,7 @@ PiCARS.Services.factory('LogisticsService', ['$q', '$http', function($q, $http) 
         post: function(item) {
             'use strict';
             return $q(function(resolve, reject) {
-                $http.get('/addItem', {body: item})
+                $http.post('/addItem', item)
                     .success(function(data, status, headers, config)
                     {
                         resolve(data);

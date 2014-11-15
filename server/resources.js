@@ -7,29 +7,7 @@ var resources = {
             var route = routes[i];
             var Resource = require('./resources/' + route.name + '/resource');
             var resource = new Resource(config);
-            PiCARS.use(route.url, function(req, res, next) {
-                if (route.method == 'get') {
-                    console.log('Route:', route.url);
-                    resource.get(function(err, data) {
-                        if (err) {
-                            console.log('Error:', err);
-                            res.send(null);
-                        } else {
-                            res.send(data);    
-                        }                                        
-                    });
-                } else if (route.method == 'post') {
-                    console.log('Route:', route.url);
-                    resource.post(req.body, function(err, data) {
-                        if (err) {
-                            console.log('Error:', err);
-                            res.send(null);
-                        } else {
-                            res.send(data);
-                        }
-                    });
-                }
-            });
+            PiCARS[route.method](route.url, resource[route.method]);
         }
     }
 };
