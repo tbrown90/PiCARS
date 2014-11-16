@@ -16,22 +16,13 @@ function LogisticsService(config) {
         
         return year + '-' + (month + 1) + '-' + day;
     }
-    
-    function getLocation(locationId) {
-        return locationId;
-    }
-    
-    function getCategory(categoryId) {
-        return categoryId;    
-    }
-    
+
     function formatInventoryRecord(inventoryRecord) {
         var record = {
             description: inventoryRecord.description,
             price: inventoryRecord.price,
             quantity: inventoryRecord.quantity,
-            location: getLocation(inventoryRecord.location),
-            category: getCategory(inventoryRecord.category),
+            category: inventoryRecord.category,
             expirationDate: formatDate(inventoryRecord.expirationDate),
             createdTime: formatDate(inventoryRecord.createdTime),
             updatedTime: formatDate(inventoryRecord.updatedTime),

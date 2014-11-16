@@ -1,15 +1,17 @@
-<div>
-    <form novalidate>
-        Description: <input type="text" ng-model="item.description" /><br/>
-        Price: <input type="text" ng-model="item.price" /><br/>
-        Quantity: <input type="text" ng-model="item.quantity" /><br/>
-        Location: <input type="text" ng-model="item.location" /><br/>
-        Category: <input type="text" ng-model="item.category" /><br/>
-        Expires? <input type="checkbox" ng-model="expires" /><br/>
-        <div ng-if="expires">
-            Expiration Date: <input type="date" ng-model="item.expirationDate" /><br/>
-        </div>
+<div class="lcars-center">
+    <h2>Add an Item</h2>
+    <div class="lcars-inventory-form">
+        <form novalidate>
+            Description: <input type="text" ng-model="item.description" /><br/>
+            Price: <input type="text" ng-model="item.price" /><br/>
+            Quantity: <input type="text" ng-model="item.quantity" /><br/>
+            Category: <select ng-model="item.category" ng-options="category for category in categories"></select><br/>
+            Expires? <input type="checkbox" ng-model="expires" /><br/>
+            <div ng-if="expires">
+                Expiration Date: <input type="date" ng-model="item.expirationDate" /><br/>
+            </div>
 
-        <button ng-click="save(item)">Save</button>
-    </form>
+            <button ng-click="save(item)">Save</button>
+        </form>
+    </div>
 </div>

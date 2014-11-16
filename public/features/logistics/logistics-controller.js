@@ -4,6 +4,12 @@ PiCARS.Controllers.controller('logisticsCtrl', ['$scope', 'LogService', 'Logisti
     $scope.inventory = [];
     $scope.loadInventory = loadInventory;
 
+    $scope.categories = ['Books',
+                         'Comics',
+                         'DVD/Blu-Rays',
+                         'Other Collectibles',
+                         'Video Games'];
+
     $scope.save = function(item) {
         item.createdTime = new Date();
         item.updateTime = new Date();
