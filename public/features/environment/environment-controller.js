@@ -17,7 +17,7 @@ PiCARS.Controllers.controller('environmentCtrl', ['$scope', '$http', 'LogService
                 }
             })
             .error(function(data, status, headers, config) {
-                LogService.log('Error: ', data);
+                LogService.log('Error: ' + data.reason);
            });
     }
 }]);

@@ -8,7 +8,7 @@ PiCARS.Services.factory('LogisticsService', ['$q', '$http', function($q, $http) 
                         resolve(data);
                     })
                     .error(function(data, status, headers, config) {
-                        reject('Error: ', status, 'Reason: ', data);
+                        reject('Error: ' + data.reason);
                    });
                 });
             },
@@ -22,7 +22,7 @@ PiCARS.Services.factory('LogisticsService', ['$q', '$http', function($q, $http) 
                         resolve(data);
                     })
                     .error(function(data, status, headers, config) {
-                        reject('Error: ', status, 'Reason: ', data);
+                        reject('Error: ' + data.reason);
                     });
                 });
         }

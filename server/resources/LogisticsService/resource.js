@@ -62,7 +62,6 @@ function LogisticsService(config) {
         var inventoryModel = connection.model('inventoryRecord');
 
         var inventoryRecord = req.body;
-        console.log('InventoryRecord', inventoryRecord);
         inventoryModel.create(inventoryRecord, function(err, record) {
             if (err) {
                 resp.send(500, {
