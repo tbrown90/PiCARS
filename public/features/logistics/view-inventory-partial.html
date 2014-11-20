@@ -1,18 +1,18 @@
 <div ng-init="loadInventory()">
-    <table class="lcars-table">
-        <tr>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Category</th>
-            <th>Expiration Date</th>
-        </tr>
-        <tr ng-repeat="item in inventory">
-            <td>{{item.description}}</td>
-            <td>{{item.price}}</td>
-            <td>{{item.quantity}}</td>
-            <td>{{item.category}}</td>
-            <td>{{item.expirationDate}}</td>
-        </tr>
-    </table>
+        <table class="lcars-table">
+            <tr>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Expiration Date</th>
+            </tr>
+            <tr class="item" ng-repeat="item in inventory" id={{item.id}}>
+                <td class="item-field" data-field="description">{{item.description}}</td>
+                <td class="item-field" data-field="price">{{item.price}}</td>
+                <td class="item-field" data-field="quantity">{{item.quantity}}</td>
+                <td class="item-field category" data-field="category">{{item.category}}</td>
+                <td class="item-field date" data-field="expirationDate">{{item.expirationDate}}</td>
+            </tr>
+        </table>
 </div>

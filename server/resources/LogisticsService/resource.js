@@ -19,6 +19,7 @@ function LogisticsService(config) {
 
     function formatInventoryRecord(inventoryRecord) {
         var record = {
+            id: inventoryRecord.id,
             description: inventoryRecord.description,
             price: inventoryRecord.price,
             quantity: inventoryRecord.quantity,

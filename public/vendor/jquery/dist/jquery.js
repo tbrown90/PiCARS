@@ -89,6 +89,9 @@ var
 		return letter.toUpperCase();
 	};
 
+window.jQuery = jQuery;
+window.$ = jQuery;
+
 jQuery.fn = jQuery.prototype = {
 	// The current version of jQuery being used
 	jquery: version,
