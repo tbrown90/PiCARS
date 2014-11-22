@@ -76,9 +76,60 @@ function LogisticsService(config) {
             }
         });
     }
+    
+    function updateItem(req, resp) {
+        console.log('Updating inventory record.');
+        var connection = mongoose.connection;
+        var inventoryModel = connection.model('inventoryRecord');
+        
+        var data = req.body;
+        
+        console.log('Data:', data);
+        
+        var query = { id: data.id };
+        var update = {};
+        switch (data.field) {
+            case 'description':
+                update.description = data.value;
+                break;
+            case 'price':
+                update.price = data.value;
+                break;
+            case 'quantity':
+                update.quantity = data.value;
+                break;
+            case 'category':
+                update.category = data.value;
+                break;
+            case 'expirationDate':
+                update.expirationDate = data.value;
+                break;
+            default:
+                console.log('Invalid field: ', data.field);
+                resp.send(500, {
+                    success: false,
+                    reason: 'Invalid field: '+ data.field
+                });
+                return;
+        }
+        
+        inventoryModel.update(query, update, { multi: true }, function(err, numAffected) {
+            if (err) {
+                resp.send(500, {
+                    success: false,
+                    reason: err.message,
+                    error: err
+                });
+            } else {
+                console.log('Inventory Record updated successfully. Number of records updated: ', numAffected);
+                resp.send({success: true});
+            }
+        });
+    }
 
     this.get = fetchInventory;
     this.post = addInventory;
+    this.put = updateItem;
 }
 
 module.exports = LogisticsService;

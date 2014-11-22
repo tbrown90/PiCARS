@@ -10,6 +10,10 @@ var routes = [{
     name: 'LogisticsService',
     url: '/addItem',
     method: 'post'
+}, {
+    name: 'LogisticsService',
+    url: '/updateItem',
+    method: 'put'
 }];
 
 module.exports = routes;

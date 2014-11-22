@@ -25,6 +25,20 @@ PiCARS.Services.factory('LogisticsService', ['$q', '$http', function($q, $http) 
                         reject('Error: ' + data.reason);
                     });
                 });
-        }
+            },
+        
+        put: function(data) {
+            'use strict';
+            return $q(function(resolve, reject) {
+                $http.put('/updateItem', data)
+                    .success(function(data, status, headers, config)
+                    {
+                        resolve(data);
+                    })
+                    .error(function(data, status, headers, config) {
+                        reject('Error: ' + data.reason);
+                    });
+                });
+            }
         };
 }]);

@@ -29,10 +29,17 @@ PiCARS.Controllers.controller('logisticsCtrl', ['$scope', '$compile', 'LogServic
         });
     }
     
-    $scope.updateItem = function(id, field, data) {
+    $scope.updateItem = function(id, field, data, old) {
         console.log('id:', id, 'field:', field, 'data:', data);
-
-        $('#' + id + ' [data-field="' + field + '"]').html(data);
+        
+        var promise = LogisticsService.put({id: id, field: field, value: data});
+        promise.then(function(response) {
+            LogService.log('Inventory record updated successfuly.');
+            $('#' + id + ' [data-field="' + field + '"]').html(data);
+        }, function(error) {
+            LogService.log(error);
+            $('#' + id + ' [data-field="' + field + '"]').html(old);
+        });
     }
 
     function loadInventory() {
@@ -41,7 +48,7 @@ PiCARS.Controllers.controller('logisticsCtrl', ['$scope', '$compile', 'LogServic
         promise.then(function(data) {
             LogService.log('Inventory Loaded');
             if (data) {
-                LogService.log('Inventory Data Retrieved: ', data.length + ' records');
+                LogService.log('Inventory Data Retrieved: ' + data.length + ' records');
                 $scope.inventory = data; 
             }
             registerEvents();
@@ -76,7 +83,7 @@ PiCARS.Controllers.controller('logisticsCtrl', ['$scope', '$compile', 'LogServic
             } else {
                 html += '<input ng-init="data=\'' + val + '\'" ng-model="data" type="text" value="' + val + '" />';
             }
-            html += ' <button ng-click="updateItem(\'' + id + '\', \'' + field + '\', data)">Save</button></form>';
+            html += ' <button ng-click="updateItem(\'' + id + '\', \'' + field + '\', data, \'' + val + '\')">Save</button></form>';
             $(this).html(html);
             $(this).addClass('active');
             $compile($(this))($scope);

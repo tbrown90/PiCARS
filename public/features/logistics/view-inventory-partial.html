@@ -15,4 +15,8 @@
                 <td class="item-field date" data-field="expirationDate">{{item.expirationDate}}</td>
             </tr>
         </table>
+    
+        <div ng-if="inventory.length === 0" class="center">
+            <a href="/#/addInventory" class="action-button">Add Item</a>
+        </div>
 </div>

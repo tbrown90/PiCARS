@@ -1,5 +1,11 @@
+<h1 class="lcars-center">Environmental Controls</h1>
+
+<h2>External Environment</h2>
 <div class="lcars-center">
-    <h1>Environmental Controls</h1>
+    <div ng-if="weather.status">
+        {{weather.status}}
+    </div>
+    
     <table class="lcars-table">
         <tr>
             <th ng-repeat="day in weather">
@@ -19,4 +25,9 @@
             </td>
         </tr>
     </table>
+</div>
+
+<h2>Internal Environment</h2>
+<div class="lcars-center">
+    Internal Environment Coming Soon
 </div>

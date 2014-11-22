@@ -3,7 +3,7 @@ PiCARS.Controllers.controller('environmentCtrl', ['$scope', '$http', 'LogService
     'use strict';
     LogService.log('Environment loaded');
     
-    $scope.weather = {};
+    $scope.weather = {status: 'loading'};
     fetchWeather();
     
     function fetchWeather() {
@@ -14,10 +14,13 @@ PiCARS.Controllers.controller('environmentCtrl', ['$scope', '$http', 'LogService
                 LogService.log('Weather data retrieved');
                 if (data) {
                     $scope.weather = data['forecast']['simpleforecast']['forecastday'].slice(0, 5);
+                } else {
+                    $scope.weather.status = null;   
                 }
             })
             .error(function(data, status, headers, config) {
                 LogService.log('Error: ' + data.reason);
+                $scope.weather.status = 'error';
            });
     }
 }]);
