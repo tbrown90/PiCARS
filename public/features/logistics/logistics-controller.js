@@ -23,6 +23,7 @@ PiCARS.Controllers.controller('logisticsCtrl', ['$scope', '$compile', 'LogServic
             LogService.log('Adding inventory record...');
             if (data) {
                 LogService.log('Inventory record added successfuly.');
+                loadInventory();
             }
         }, function(error) {
             LogService.log(error);
