@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
+var lcd = require('LCDJS');
 
 function LogisticsService(config) {
     'use strict';
@@ -65,6 +66,7 @@ function LogisticsService(config) {
         var inventoryRecord = req.body;
         inventoryModel.create(inventoryRecord, function(err, record) {
             if (err) {
+                lcd.message('Error: Inventory', true);
                 resp.send(500, {
                     success: false,
                     reason: err.message,
@@ -72,6 +74,7 @@ function LogisticsService(config) {
                 });
             } else {
                 console.log('Inventory Record added successfully. Id: ', record.id);
+                lcd.message('Inventory Added', true);
                 resp.send({success: true});
             }
         });
