@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var lcd = require('LCDJS');
-lcd.init(22, 18, [16, 11, 13, 15]);
+lcd.init(25, 24, [23, 17, 27, 22]);
 lcd.begin(16, 1);
 
 function LogisticsService(config) {
