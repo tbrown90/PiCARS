@@ -46,12 +46,14 @@ function LogisticsService(config) {
             console.log('Executing Query');
 
             if (err) {
+                lcd.message('Inventory Error');
                 resp.send(500, {
                     success: false,
                     reason: err.message,
                     error: err
                 });
             } else {
+                lcd.message('Inventory Retrieved');
                 var inventory = _.chain(response)
                     .map(formatInventoryRecord)
                     .value();
