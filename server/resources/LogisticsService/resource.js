@@ -1,8 +1,12 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var lcd = require('LCDJS');
-lcd.init(22, 18, [16, 11, 13, 15]);
-lcd.begin(16, 1);
+
+function lcdCallback(err, results) {
+    if (err) {
+        console.log('LCD Error: ', err);
+    }
+}
 
 function LogisticsService(config) {
     'use strict';
@@ -46,14 +50,14 @@ function LogisticsService(config) {
             console.log('Executing Query');
 
             if (err) {
-                lcd.message('Inventory Error');
+                lcd.message('Inventory Error', lcdCallback);
                 resp.send(500, {
                     success: false,
                     reason: err.message,
                     error: err
                 });
             } else {
-                lcd.message('Inventory Retrieved');
+                lcd.message('Inventory Retrieved', lcdCallback);
                 var inventory = _.chain(response)
                     .map(formatInventoryRecord)
                     .value();
@@ -70,7 +74,7 @@ function LogisticsService(config) {
         var inventoryRecord = req.body;
         inventoryModel.create(inventoryRecord, function(err, record) {
             if (err) {
-                lcd.message('Error: Inventory', true);
+                lcd.message('Error: Inventory', lcdCallback);
                 resp.send(500, {
                     success: false,
                     reason: err.message,
@@ -78,7 +82,7 @@ function LogisticsService(config) {
                 });
             } else {
                 console.log('Inventory Record added successfully. Id: ', record.id);
-                lcd.message('Inventory Added', true);
+                lcd.message('Inventory Added', lcdCallback);
                 resp.send({success: true});
             }
         });
@@ -122,6 +126,7 @@ function LogisticsService(config) {
         
         inventoryModel.update(query, update, { multi: true }, function(err, numAffected) {
             if (err) {
+                lcd.message('Inventory Update Error', lcdCallback);
                 resp.send(500, {
                     success: false,
                     reason: err.message,
@@ -129,6 +134,7 @@ function LogisticsService(config) {
                 });
             } else {
                 console.log('Inventory Record updated successfully. Number of records updated: ', numAffected);
+                lcd.message('Inventory Updated', lcdCallback);
                 resp.send({success: true});
             }
         });
