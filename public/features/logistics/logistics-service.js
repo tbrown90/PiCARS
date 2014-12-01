@@ -8,6 +8,7 @@ PiCARS.Services.factory('LogisticsService', ['$q', '$http', function($q, $http) 
                         resolve(data);
                     })
                     .error(function(data, status, headers, config) {
+                        console.log('Data', data, 'Status', status);
                         reject('Error: ' + data.reason);
                    });
                 });

@@ -54,14 +54,14 @@ function LogisticsService(config) {
             console.log('Executing Query');
 
             if (err) {
-                lcd.message('Inventory Error', lcdOptions, lcdCallback);
+                //lcd.message('Inventory Error', lcdOptions, lcdCallback);
                 resp.send(500, {
                     success: false,
                     reason: err.message,
                     error: err
                 });
             } else {
-                lcd.message('Inventory Retrieved', lcdOptions, lcdCallback);
+                //lcd.message('Inventory Retrieved', lcdOptions, lcdCallback);
                 var inventory = _.chain(response)
                     .map(formatInventoryRecord)
                     .value();
@@ -78,7 +78,7 @@ function LogisticsService(config) {
         var inventoryRecord = req.body;
         inventoryModel.create(inventoryRecord, function(err, record) {
             if (err) {
-                lcd.message('Error: Inventory', lcdOptions, lcdCallback);
+                //lcd.message('Error: Inventory', lcdOptions, lcdCallback);
                 resp.send(500, {
                     success: false,
                     reason: err.message,
@@ -86,7 +86,7 @@ function LogisticsService(config) {
                 });
             } else {
                 console.log('Inventory Record added successfully. Id: ', record.id);
-                lcd.message('Inventory Added', lcdOptions, lcdCallback);
+                //lcd.message('Inventory Added', lcdOptions, lcdCallback);
                 resp.send({success: true});
             }
         });
@@ -130,7 +130,7 @@ function LogisticsService(config) {
         
         inventoryModel.update(query, update, { multi: true }, function(err, numAffected) {
             if (err) {
-                lcd.message('Inventory Update Error', lcdOptions, lcdCallback);
+                //lcd.message('Inventory Update Error', lcdOptions, lcdCallback);
                 resp.send(500, {
                     success: false,
                     reason: err.message,
@@ -138,7 +138,7 @@ function LogisticsService(config) {
                 });
             } else {
                 console.log('Inventory Record updated successfully. Number of records updated: ', numAffected);
-                lcd.message('Inventory Updated', lcdOptions, lcdCallback);
+                //lcd.message('Inventory Updated', lcdOptions, lcdCallback);
                 resp.send({success: true});
             }
         });
