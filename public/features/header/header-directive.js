@@ -6,7 +6,7 @@ PiCARS.Directives.directive('picarsHeader', [function() {
         scope: {
             id: '@'   
         },
-        templateUrl: 'features/header/header-partial.html',
+        templateUrl: 'features/header/partials/header-partial.html',
         controller: 'headerCtrl', link: function($scope, $element) {
         
         }

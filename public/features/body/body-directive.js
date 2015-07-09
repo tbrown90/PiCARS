@@ -6,7 +6,7 @@ PiCARS.Directives.directive('picarsBody', [function() {
         scope: {
             id: '@'   
         },
-        templateUrl: 'features/body/body-partial.html',
+        templateUrl: 'features/body/partials/body-partial.html',
         controller: 'bodyCtrl'
     };
 }]);

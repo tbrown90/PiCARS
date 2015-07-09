@@ -6,7 +6,7 @@ PiCARS.Directives.directive('picarsLog', function() {
         scope: {
             id: '@'   
         },
-        templateUrl: 'features/log/log-partial.html',
+        templateUrl: 'features/log/partials/log-partial.html',
         controller: 'logCtrl'
     };
 });

@@ -3,3 +3,5 @@ npm-debug.log
 /public/_PiCARS
 .DSSTORE
 /.sass-cache
+*.css
+*.css.map

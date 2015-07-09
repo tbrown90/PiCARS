@@ -2,14 +2,16 @@
     <h2>Add an Item</h2>
     <div class="lcars-inventory-form">
         <form novalidate>
-            Description: <input type="text" ng-model="item.description" /><br/>
-            Price: <input type="text" ng-model="item.price" /><br/>
-            Quantity: <input type="text" ng-model="item.quantity" /><br/>
-            Category: <select ng-model="item.category" ng-options="category for category in categories"></select><br/>
-            Expires? <input type="checkbox" ng-model="expires" /><br/>
+            <form-text-input label="Description" id="item-description" data="item.description"></form-text-input>
+            <form-text-input label="Price" id="item-price" data="item.price"></form-text-input>
+            <form-text-input label="Quantity" id="item-quantity" data="item.quantity"></form-text-input>
+            <form-select-input label="Category" id="item-category" data="item.category" options="categories"></form-select-input>
+            
+            <form-checkbox-input label="Expires?" id="item-expires" data="expires"></form-checkbox-input>
             <div ng-if="expires">
-                Expiration Date: <input type="date" ng-model="item.expirationDate" /><br/>
+                <form-text-input label="Expiration Date" id="item-expiration-date" data="item.expirationDate"></form-text-input>
             </div>
+            <br/>
             <a href="/#/viewInventory" class="action-button-small" ng-click="save(item)">Save</a>
         </form>
     </div>
