@@ -14,7 +14,7 @@ var schemas = [{
         'expirationDate': Date,
         'createdTime': Date,
         'updatedTime': Date,
-        'quantityUpdateTime': Date,
+        'quantityUpdatedTime': Date,
         'alertIds': String,
         'shouldShow': Boolean
     }

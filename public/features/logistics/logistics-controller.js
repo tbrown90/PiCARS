@@ -12,11 +12,14 @@ PiCARS.Controllers.controller('logisticsCtrl', ['$scope', '$compile', 'LogServic
 
     $scope.save = function(item) {
         item.createdTime = new Date();
-        item.updateTime = new Date();
+        item.updatedTime = new Date();
+        item.quantityUpdatedTime = new Date();
+        
         if (!item.expirationDate) {
             item.expirationDate = null;
         }
         item.timesModified = 0;
+        item.shouldShow = true;
 
         var promise = LogisticsService.post(item);
         promise.then(function(data) {

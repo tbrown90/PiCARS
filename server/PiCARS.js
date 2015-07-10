@@ -14,6 +14,10 @@ var PiCARS = express();
 
 mongoose.connect(config.mongodb.url);
 var mongooseDb = mongoose.connection;
+mongooseDb.on('error', function(err) {
+    console.log('Error: ', err);
+});
+
 mongooseDb.on('open', function(info) {
     resources.register(PiCARS, config);
     models();

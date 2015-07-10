@@ -2,10 +2,14 @@
     <h2>Add an Item</h2>
     <div class="lcars-inventory-form">
         <form novalidate>
+            <form-text-input label="Name" id="item-name" data="item.name"></form-text-input>
             <form-text-input label="Description" id="item-description" data="item.description"></form-text-input>
             <form-text-input label="Price" id="item-price" data="item.price"></form-text-input>
             <form-text-input label="Quantity" id="item-quantity" data="item.quantity"></form-text-input>
-            <form-select-input label="Category" id="item-category" data="item.category" options="categories"></form-select-input>
+            <form-text-input label="Category" id="item-category" data="item.category"></form-text-input>
+            <div ng-if="item.category.length > 0">
+                <form-text-input label="Sub-Category" id="item-subcategory" data="item.subCategory"></form-text-input>
+            </div>
             
             <form-checkbox-input label="Expires?" id="item-expires" data="expires"></form-checkbox-input>
             <div ng-if="expires">

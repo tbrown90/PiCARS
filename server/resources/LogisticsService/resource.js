@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
 
-function LogisticsService(config) {
+function LogisticsService() {
     'use strict';
     
     function formatDate(date) {
@@ -9,10 +9,10 @@ function LogisticsService(config) {
             return '';    
         }
         
-        var d = new Date(date);
-        var day = d.getDate();
-        var month = d.getMonth();
-        var year = d.getFullYear();
+        var d = new Date(date),
+            day = d.getDate(),
+            month = d.getMonth(),
+            year = d.getFullYear();
         
         return year + '-' + (month + 1) + '-' + day;
     }
@@ -20,13 +20,19 @@ function LogisticsService(config) {
     function formatInventoryRecord(inventoryRecord) {
         var record = {
             id: inventoryRecord.id,
+            name: inventoryRecord.name,
             description: inventoryRecord.description,
+            barcode: inventoryRecord.barcode,
             price: inventoryRecord.price,
             quantity: inventoryRecord.quantity,
             category: inventoryRecord.category,
+            subCategory: inventoryRecord.subCategory,
             expirationDate: formatDate(inventoryRecord.expirationDate),
             createdTime: formatDate(inventoryRecord.createdTime),
             updatedTime: formatDate(inventoryRecord.updatedTime),
+            quantityUpdatedTime: formatDate(inventoryRecord.quantityUpdatedTime),
+            alertIds: inventoryRecord.alertIds,
+            shouldShow: inventoryRecord.shouldShow,
             timesModified: inventoryRecord.timesModified
         };
         
@@ -34,14 +40,30 @@ function LogisticsService(config) {
     }
     
     function fetchInventory(req, resp) {
+        function fetch(err, response) {
+            if (err) {
+                resp.send(500, {
+                    success: false,
+                    reason: err.message,
+                    error: err
+                });
+            } else {
+                var inventory = _.chain(response).map(formatInventoryRecord).value();
+                console.log('RESPONSE: ', inventory);
+                resp.send(inventory);
+            }
+        }
+        
         console.log('Fetching Inventory');
         var connection = mongoose.connection;
         var inventoryModel = connection.model('inventoryRecord');        
         
         var query = inventoryModel.find();
-        return query.exec(function(err, response) {
-            console.log('Executing Query');
-
+        return query.exec(fetch);
+    }
+    
+    function addInventory(req, resp) {
+        function create(err) {
             if (err) {
                 resp.send(500, {
                     success: false,
@@ -49,21 +71,20 @@ function LogisticsService(config) {
                     error: err
                 });
             } else {
-                var inventory = _.chain(response)
-                    .map(formatInventoryRecord)
-                    .value();
-                resp.send(inventory);
+                resp.send({success: true});
             }
-        });
-    }
-    
-    function addInventory(req, resp) {
+        }
+        
         console.log('Adding inventory record to database');
         var connection = mongoose.connection;
         var inventoryModel = connection.model('inventoryRecord');
 
         var inventoryRecord = req.body;
-        inventoryModel.create(inventoryRecord, function(err, record) {
+        inventoryModel.create(inventoryRecord, create);
+    }
+    
+    function updateItem(req, resp) {
+        function update(err) {
             if (err) {
                 resp.send(500, {
                     success: false,
@@ -71,39 +92,34 @@ function LogisticsService(config) {
                     error: err
                 });
             } else {
-                console.log('Inventory Record added successfully. Id: ', record.id);
                 resp.send({success: true});
             }
-        });
-    }
-    
-    function updateItem(req, resp) {
+        }
+        
         console.log('Updating inventory record.');
-        var connection = mongoose.connection;
-        var inventoryModel = connection.model('inventoryRecord');
+        var connection = mongoose.connection,
+            inventoryModel = connection.model('inventoryRecord'),
+            data = req.body,
+            query = { id: data.id },
+            updatedModel = {};
         
-        var data = req.body;
-        
-        console.log('Data:', data);
-        
-        var query = { id: data.id };
-        var update = {};
         switch (data.field) {
             case 'description':
-                update.description = data.value;
-                break;
+                updatedModel.description = data.value;
+            break;
             case 'price':
-                update.price = data.value;
-                break;
+                updatedModel.price = data.value;
+            break;
             case 'quantity':
-                update.quantity = data.value;
-                break;
+                updatedModel.quantity = data.value;
+                updatedModel.quantityUpdatedTime = formatDate(new Date());
+            break;
             case 'category':
-                update.category = data.value;
-                break;
+                updatedModel.category = data.value;
+            break;
             case 'expirationDate':
-                update.expirationDate = data.value;
-                break;
+                updatedModel.expirationDate = data.value;
+            break;
             default:
                 console.log('Invalid field: ', data.field);
                 resp.send(500, {
@@ -113,18 +129,8 @@ function LogisticsService(config) {
                 return;
         }
         
-        inventoryModel.update(query, update, { multi: true }, function(err, numAffected) {
-            if (err) {
-                resp.send(500, {
-                    success: false,
-                    reason: err.message,
-                    error: err
-                });
-            } else {
-                console.log('Inventory Record updated successfully. Number of records updated: ', numAffected);
-                resp.send({success: true});
-            }
-        });
+        updatedModel.updatedTime = formatDate(new Date());
+        inventoryModel.update(query, updatedModel, { multi: true }, update);
     }
 
     this.get = fetchInventory;
