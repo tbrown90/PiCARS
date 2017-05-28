@@ -53,7 +53,7 @@ mongooseDb.on('open', function(info) {
     });
 });
 
-//resources.register(PiCARS, config);
+resources.register(PiCARS, config);
 
 // view engine setup
 PiCARS.set('views', path.join(__dirname, 'views'));

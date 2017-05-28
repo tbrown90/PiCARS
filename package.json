@@ -37,7 +37,7 @@
     "browserify": "3.46.0",
     "gulp-browserify": "0.5.x",
     "browserify-shim": "3.x.x",
-    "gulp-ng-annotate": "0.3.x",
+    "gulp-ng-annotate": "2.0.x",
     "gulp-util": "^2.2.14",
     "through": "~2.3.4",
     "gulp-streamify": "0.0.5",
